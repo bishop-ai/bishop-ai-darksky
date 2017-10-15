@@ -1,7 +1,7 @@
 {
     "name": "bishop-ai-darksky",
     "version": "0.1.0",
-    "description": "Get weather forcasts from Dark Sky in Bishop-Ai",
+    "description": "Get weather forecasts from Dark Sky in Bishop-AI",
     "keywords": [
         "bishop-ai plugin",
         "Dark Sky",
