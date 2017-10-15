@@ -13,6 +13,9 @@
         "email": "nova706@gmail.com",
         "url": "http://www.davidpaulhamilton.net/"
     },
+    "homepage": "https://github.com/bishop-ai/bishop-ai-darksky",
+    "bugs": "https://github.com/bishop-ai/bishop-ai-darksky/issues",
+    "repository": "github:bishop-ai/bishop-ai-darksky",
     "dependencies": {
         "moment": "~2.11.2",
         "q": "1.2.0",
