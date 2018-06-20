@@ -1,6 +1,6 @@
 {
     "name": "bishop-ai-darksky",
-    "version": "0.1.0",
+    "version": "0.3.0",
     "description": "Get weather forecasts from Dark Sky in Bishop-AI",
     "keywords": [
         "bishop-ai plugin",
@@ -15,10 +15,5 @@
     },
     "homepage": "https://github.com/bishop-ai/bishop-ai-darksky",
     "bugs": "https://github.com/bishop-ai/bishop-ai-darksky/issues",
-    "repository": "github:bishop-ai/bishop-ai-darksky",
-    "dependencies": {
-        "moment": "~2.11.2",
-        "q": "1.2.0",
-        "request": "~2.1"
-    }
+    "repository": "github:bishop-ai/bishop-ai-darksky"
 }

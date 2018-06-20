@@ -1,8 +1,7 @@
-var moment = require('moment');
-var $q = require('q');
-var request = require('request');
+var Weather = function (config, axios) {
 
-var Weather = function (config) {
+    var self = this;
+    this.axios = axios;
 
     this.intent = [
         {value: "what is the weather like [today]", trigger: "weather.getCurrent"},
@@ -31,7 +30,7 @@ var Weather = function (config) {
             var latitude = utils.getMemory('latitude');
             var longitude = utils.getMemory('longitude');
 
-            Weather.getWeather(key, latitude, longitude).then(function (weather) {
+            self.getWeather(key, latitude, longitude).then(function (weather) {
                 var responses = [];
 
                 responses.push([
@@ -435,19 +434,17 @@ Weather.returnRandom = function (responses) {
     return responses[Math.floor(Math.random() * responses.length)];
 };
 
-Weather.getWeather = function (key, latitude, longitude) {
-    var dfd = $q.defer();
+Weather.prototype.getWeather = function (key, latitude, longitude) {
+    var dfd = Q.defer();
 
     var uri = 'https://api.darksky.net/forecast/' + key + '/' + latitude + "," + longitude;
 
-    request(uri, function (error, response, body) {
-        if (error) {
-            console.log(error);
-            dfd.reject(error);
-        } else {
-            var obj = JSON.parse(body);
-            dfd.resolve(obj);
-        }
+    this.axios(uri).then(function (response) {
+        var obj = JSON.parse(response.data);
+        dfd.resolve(obj);
+    }).catch(function (error) {
+        console.log(error);
+        dfd.reject(error);
     });
 
     return dfd.promise;
@@ -459,13 +456,14 @@ Weather.failureMessages = [
 
 module.exports = {
     namespace: 'weather',
+    description: 'Get the weather',
     examples: [
         "What's the weather like?",
         "What's the temperature?",
         "How hot will it be tomorrow?",
         "Is it going to snow?"
     ],
-    register: function (config) {
-        return new Weather(config);
+    register: function (config, nlp, axios) {
+        return new Weather(config, axios);
     }
 };
